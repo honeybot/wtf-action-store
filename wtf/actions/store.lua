@@ -13,20 +13,19 @@ function _M:init( ... )
 end
 
 function _M:act(...)
-  local ngx = ngx
   local rnd = tools.random_string
   local select = select
   local id, data
   
   local storage_name = self:get_mandatory_parameter('storage')
   local storage = self.instance:get_storage(storage_name)
-  local params = select(1, ...)
+  local p1, p2 = select(1, ...)
   
-  if #params > 1 then
-    id = params[1]
-    data = params[2]
+  if p2 then
+    id = p1
+    data = p2
   else
-    data = params[1]
+    data = p1
     if data["id"] then
       id = data["id"]
     else
